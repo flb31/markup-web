@@ -1,0 +1,52 @@
+$displays: (
+	'none' 'none',
+	'inherit' 'inherit',
+	'inline' 'inline',
+	'initial' 'initial',
+	'block' 'block',
+	'iblock' 'inline-block',
+	'flex' 'flex',
+	'iflex' 'inline-flex',
+	'list-item' 'list-item',
+	'table' 'table',
+	'itable' 'inline-table',
+	'thead' 'table-header-group',
+	'tbody' 'table-row-group',
+	'tfoot' 'table-footer-group',
+	'td' 'table-cell',
+	'tr' 'table-row',
+	'col' 'table-column'
+) !default;
+
+/*Hidden and show responsive*/
+@mixin show-hidden-responsive(){
+	
+  @each $breakpoint in $breakpoints {
+			
+    $name: nth($breakpoint, 1);
+    $declaration: nth($breakpoint, 2);
+    $__prefix : "." + $name + "--";
+		
+    @each $display in $displays{
+			
+      $d_key: nth($display, 1);
+      $d_value: nth($display, 2);
+      $prefix_disp : show;
+
+      @if $d_key == none{
+        $prefix_disp : hidden;
+        $d_key : $prefix_disp;
+      } @else{
+        $d_key : $prefix_disp + "-" + $d_key;
+      }
+
+      #{$__prefix}#{$d_key}{ 
+        @media #{$declaration}{
+          display: #{$d_value} !important;
+        }
+      }
+    }
+  }
+}
+
+@include show-hidden-responsive();

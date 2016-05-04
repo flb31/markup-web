@@ -1,0 +1,16 @@
+$screen: "only screen";
+$gt--smaller: "only screen and (min-width: #{$phone--start})";
+$gt--small: "only screen and (min-width: #{$palm--start})";
+$gt--mid: "only screen and (min-width: #{$mid--start})";
+$gt--medium: "only screen and (min-width: #{$lap--start})";
+$gt--large: "only screen and (min-width: #{$desk--start})";
+$gt--extra--large: "only screen and (min-width: #{$desk--wide--start})";
+
+$breakpoints: (
+    'phone' '(min-width: #{$phone--start})',
+    'tablet' '(min-width: #{$palm--start})',
+    'mid-tablet' '(min-width: #{$mid--start})',
+    'lap' '(min-width: #{$lap--start})',
+    'desk' '(min-width: #{$desk--start})',
+    'desk-wide' '(min-width: #{$desk--wide--start})'
+) !default;

@@ -1,0 +1,31 @@
+body{
+  background: $base--lumen--green;
+  font-family: "Helvetica";
+  color: $white;
+  height: 100vh;
+  width: 100%;
+  display: table;
+  animation: anim 15s ease infinite;
+    
+  @keyframes anim{
+    0% { background: $base--lumen--green; }
+    50% { background: $base--lumen--yellow; }
+    100% { background: $base--lumen--green; }
+  }
+  
+  .hello{
+    height: inherit;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    span, i.fa-code{
+      font-size: 120px;
+    }
+    i.fa-code{
+      transition: transform 0.6s ease;
+      &:hover{
+        transform: rotateY(180deg);
+      }
+    }
+  } 
+}

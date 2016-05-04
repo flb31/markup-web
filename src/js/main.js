@@ -1,8 +1,8 @@
-
-var Main = function() {};
-Main.prototype.helloworld = function(){
-	console.log("Hello World");
+var Main = null;
+Main = { 
+    module: {} 
 };
-
-var main = new Main();
-main.helloworld();
+Main.module.helloworld = function(){
+  console.log("Hello World by Lumen Digital");
+};
+Main.module.helloworld();

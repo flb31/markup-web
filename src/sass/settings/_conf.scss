@@ -1,0 +1,41 @@
+//Setting margin
+$margin: 30px !default;
+$double--margin: $margin * 2 !default;
+$half--margin: $margin / 2 !default;
+$quarter--margin: $margin / 4 !default;
+
+//Setting padding
+$padding: 30px !default;
+$double--padding: $padding * 2 !default;
+$half--padding: $padding / 2 !default;
+$quarter--padding: $padding / 4 !default;
+
+// Breakpoints
+$phone--start:       320px!default;
+$palm--start:        500px!default;
+$mid--start:         700px!default;
+$lap--start:         800px!default;
+$desk--start:        1170px!default;
+$desk--wide--start:   1280px!default;
+
+
+//Colors
+$white : #FFF;
+$base--lumen--green: #4EA1AF;
+$base--lumen--yellow: #fcf533;
+
+//Font weight
+$weight--bold: 600;
+$weight--semibold: 400;
+$weight--lighter: 300;
+$weight--thin: 100;
+
+
+//Font family
+$font--title: '';
+$font--subtitle: '';
+$font--paragraph: '';
+
+//Animation
+$animation--time: 0.4s;
+$animation--timing: ease-out;

@@ -1,0 +1,59 @@
+//Text Align
+.text--center{ text-align: center !important; }
+.text--left{ text-align: left !important; }
+.text--justify{ text-align: justify !important; }
+.text--right{ text-align: right !important; }
+
+//Text Transform
+.text--uppercase{ text-transform: uppercase !important; }
+.text--capitalize{ text-transform: capitalize !important; }
+.text--lowercase{ text-transform: lowercase !important; }
+
+//Text underline
+.text--unlerline{ text-decoration: underline !important; }
+.text--unlerline--none{ text-decoration: none !important; }
+
+//Float
+.right{ float: right; }
+.left{ float: left; }
+
+//Position
+.relative{ position: relative; }
+.absolute{ position: absolute; }
+.fixed{ position: fixed; }
+
+//Display
+.block{ display: block; }
+.inline-block{ display: inline-block; }
+.inline{ display: inline; }
+.hidden{ display: none; }
+
+//Overflow
+.overflow--hidden{ overflow: hidden; }
+.overflow--visible{ overflow: visible; }
+.overflow--auto{ overflow: auto; }
+
+//Center
+.block--center{ display: block; margin: 0 auto; width: 50%; }
+
+//Font Weight
+.weight--bold{ font-weight: $weight--bold; }
+.weight--semibold{ font-weight: $weight--semibold; }
+.weight--lighter{ font-weight: $weight--lighter; }
+.weight--thin{ font-weight: $weight--thin; }
+
+//Font size
+.size--12 { font-size: 12px; }
+.size--14 { font-size: 14px; }
+.size--16 { font-size: 16px; }
+.size--18 { font-size: 18px; }
+.size--21 { font-size: 21px; }
+.size--24 { font-size: 24px; }
+.size--36 { font-size: 36px; }
+.size--48 { font-size: 48px; }
+.size--60 { font-size: 60px; }
+.size--72 { font-size: 72px; }
+.size--90 { font-size: 90px; }
+
+
+//Color

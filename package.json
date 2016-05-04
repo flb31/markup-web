@@ -1,8 +1,8 @@
 {
-  "name": "flb31-frontend",
+  "name": "markup-web",
   "version": "0.1.2",
-  "description": "Base Project for FrontEnd development",
-  "repository": "https://github.com/flb31/flb31-frontend",
+  "description": "Proyecto base para Lumen Digital",
+  "repository": "",
   "scripts": {
     "prestart": "npm install",
     "postinstall": "bower install && grunt build $ENV"
