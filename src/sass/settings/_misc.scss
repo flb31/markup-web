@@ -13,6 +13,14 @@
 .text--unlerline{ text-decoration: underline !important; }
 .text--unlerline--none{ text-decoration: none !important; }
 
+//Cut Text
+.ellipsis-text{
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 //Float
 .right{ float: right; }
 .left{ float: left; }
@@ -55,5 +63,34 @@
 .size--72 { font-size: 72px; }
 .size--90 { font-size: 90px; }
 
+//Background
+.background--transparent{ background-color: transparent; }
+
+//Canvas responsive
+.container_16_9{
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  margin: 0 auto;
+}
+.container_16_9_src{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+//Scroll horizontal display
+.scroll-horizontal{
+  overflow-x: scroll;
+  white-space: nowrap;
+  >*{
+    display: inline-block;
+    float: none;
+  }
+}
 
 //Color

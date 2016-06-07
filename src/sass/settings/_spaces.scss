@@ -1,80 +1,141 @@
-.margin{ margin: $margin !important; }
-.margin--top { margin-top: $margin !important; }
-.margin--bottom { margin-bottom: $margin !important; }
-.margin--left { margin-left: $margin !important; }
-.margin--right { margin-right: $margin !important; }
-.margin--horizontal{ margin-left: $margin !important; margin-right: $margin !important; }
-.margin--vertical{ margin-top: $margin !important; margin-bottom: $margin !important; }
+$spaces: (
+  'margin' : '#{$margin}',
+  'half--margin' : '#{$half--margin}',
+  'double--margin' : '#{$double--margin}',
+  'quarter--margin' : '#{$quarter--margin}',
+  'none--margin' : '#{$none--margin}',
+  
+  'padding' : '#{$padding}',
+  'half--padding' : '#{$half--padding}',
+  'double--padding' : '#{$double--padding}',
+  'quarter--padding' : '#{$quarter--padding}',
+  'none--padding' : '#{$none--padding}',
+  
+) !default;
 
-.margin--half{ margin: $half--margin !important; }
-.margin--half--top { margin-top: $half--margin !important; }
-.margin--half--bottom { margin-bottom: $half--margin !important; }
-.margin--half--left { margin-left: $half--margin !important; }
-.margin--half--right { margin-right: $half--margin !important; }
-.margin--half--horizontal{ margin-left: $half--margin !important; margin-right: $half--margin !important; }
-.margin--half--vertical{ margin-top: $half--margin !important; margin-bottom: $half--margin !important; }
+$total-corners : 7;
 
-.margin--double{ margin: $double--margin !important; }
-.margin--double--top { margin-top: $double--margin !important; }
-.margin--double--bottom { margin-bottom: $double--margin !important; }
-.margin--double--left { margin-left: $double--margin !important; }
-.margin--double--right { margin-right: $double--margin !important; }
-.margin--double--horizontal{ margin-left: $double--margin !important; margin-right: $double--margin !important; }
-.margin--double--vertical{ margin-top: $double--margin !important; margin-bottom: $double--margin !important; }
-
-.margin--quarter{ margin: $quarter--margin !important; }
-.margin--quarter--top { margin-top: $quarter--margin !important; }
-.margin--quarter--bottom { margin-bottom: $quarter--margin !important; }
-.margin--quarter--left { margin-left: $quarter--margin !important; }
-.margin--quarter--right { margin-left: $quarter--margin !important; }
-.margin--quarter--horizontal{ margin-left: $quarter--margin !important; margin-right: $quarter--margin !important; }
-.margin--quarter--vertical{ margin-top: $quarter--margin !important; margin-bottom: $quarter--margin !important; }
-
-.margin--none{ margin: 0 !important; }
-.margin--top--none{ margin-top: 0 !important; }
-.margin--bottom--none{ margin-bottom: 0 !important; }
-.margin--left--none{ margin-left: 0 !important; }
-.margin--right--none{ margin-right: 0 !important; }
-.margin--horizontal--none{ margin-left: 0 !important; margin-right: 0 !important; }
-.margin--vertical--none{ margin-top: 0 !important; margin-bottom: 0 !important; }
+$corners: (
+  '' '',
+  'top' '--top',
+  'bottom' '--bottom',
+  'left' '--left',
+  'right' '--right',
+  'horizontal' '--horizontal',
+  'vertical' '--vertical',
+) !default;
 
 
-.padding{ padding: $padding !important; }
-.padding--top { padding-top: $padding !important; }
-.padding--bottom { padding-bottom: $padding !important; }
-.padding--left { padding-left: $padding !important; }
-.padding--right { padding-right: $padding !important; }
-.padding--horizontal{ padding-left: $padding !important; padding-right: $padding !important; }
-.padding--vertical{ padding-top: $padding !important; padding-bottom: $padding !important; }
+$dimensions: (
+  '' '',
+  'half' '--half',
+  'double' '--double',
+  'quarter' '--quarter'
+) !default;
 
-.padding--half{ padding: $half--padding !important; }
-.padding--half--top { padding-top: $half--padding !important; }
-.padding--half--bottom { padding-bottom: $half--padding !important; }
-.padding--half--left { padding-left: $half--padding !important; }
-.padding--half--right { padding-right: $half--padding !important; }
-.padding--half--horizontal{ padding-left: $half--padding !important; padding-right: $half--padding !important; }
-.padding--half--vertical{ padding-top: $half--padding !important; padding-bottom: $half--padding !important; }
+$nones: (
+  '' '',
+  'none' '--none'
+) !default;
 
-.padding--double{ padding: $double--padding !important; }
-.padding--double--top { padding-top: $double--padding !important; }
-.padding--double--bottom { padding-bottom: $double--padding !important; }
-.padding--double--left { padding-left: $double--padding !important; }
-.padding--double--right { padding-right: $double--padding !important; }
-.padding--double--horizontal{ padding-left: $double--padding !important; padding-right: $double--padding !important; }
-.padding--double--vertical{ padding-top: $double--padding !important; padding-bottom: $double--padding !important; }
+@mixin spaces-responsive($type, $is_responsive){
+	
+  $__flag_responsive : 'true';
+  
+  @each $breakpoint in $breakpoints {
+    $device_name: nth($breakpoint, 1);
+    $responsive: nth($breakpoint, 2);
+    $__prefix : '.' + $device_name + '--';
+    
+    
+    @if $__flag_responsive == 'true' {
+      
+      @if $is_responsive == 'false' {
+        $__prefix : '.';
+        $__flag_responsive : 'false'; //one iteration!!
+        $device_name: 'all';
+      }
+      
+      /* ----Device #{$device_name} #{$type}----*/
+    
+      @each $none in $nones{
+        $none_key: nth($none, 1);
+        $none_value: nth($none, 2);
+        $__counter : 0;
 
-.padding--quarter{ padding: $quarter--padding !important; }
-.padding--quarter--top { padding-top: $quarter--padding !important; }
-.padding--quarter--bottom { padding-bottom: $quarter--padding !important; }
-.padding--quarter--left { padding-left: $quarter--padding !important; }
-.padding--quarter--right { padding-right: $quarter--padding !important; }
-.padding--quarter--horizontal{ padding-left: $quarter--padding !important; padding-right: $quarter--padding !important; }
-.padding--quarter--vertical{ padding-top: $quarter--padding !important; padding-bottom: $quarter--padding !important; }
+        @each $dimension in $dimensions{
+          $dimension_key: nth($dimension, 1);
+          $dimension_value: nth($dimension, 2);
 
-.padding--none{ padding: 0 !important; }
-.padding--top--none{ padding-top: 0 !important; }
-.padding--bottom--none{ padding-bottom: 0 !important; }
-.padding--left--none{ padding-left: 0 !important; }
-.padding--right--none{ padding-right: 0 !important; }
-.padding--horizontal--none{ padding-left: 0 !important; padding-right: 0 !important; }
-.padding--vertical--none{ padding-top: 0 !important; padding-bottom: 0 !important; }
+          @each $corner in $corners{
+            $corner_key: nth($corner, 1);
+            $corner_value: nth($corner, 2);
+
+            @if $__counter < $total-corners {
+
+              $value : '';
+              
+              @if $none_key == 'none' {
+                $value : $none_key + '--' + $type;
+                $dimension_value : '';
+                $__counter: $__counter + 1; //Only for none property
+              } @else {
+
+                @if( str-length($dimension_key) > 0 ) {
+                  $value : $dimension_key + '--' + $type;
+                } @else {
+                  $value : $type;
+                } 
+              }
+
+              #{$__prefix}#{$type}#{$dimension_value}#{$corner_value}#{$none_value}{
+                @if $is_responsive == 'true' {
+                  @media #{$responsive}{
+                    @include print-value-spaces($type, $corner_key, $corner_value, $value);
+                  }
+                }@else{
+                  @include print-value-spaces($type, $corner_key, $corner_value, $value);
+                }
+              }
+            } //end if
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@mixin print-value-spaces($type, $corner_key, $corner_value, $value){
+  
+  $var_value : map-get($spaces, #{$value}) !important;
+  
+  @if $corner_key == 'horizontal'{
+    $param-top : $type + '-left';
+    $param-bottom : $type + '-right';
+    #{$param-top}: #{$var_value}; #{$param-bottom}: #{$var_value};
+
+  } @elseif $corner_key == 'vertical'{
+    $param-top : $type + '-top';
+    $param-bottom : $type + '-bottom';
+
+    #{$param-top}: #{$var_value}; #{$param-bottom}: #{$var_value};
+
+  } @else{
+
+    $corner_str : '';
+    @if( str-length($corner_key) > 0 ){
+      $corner_str : str-slice($corner_value, 2);
+    }
+
+    $param : $type + $corner_str;
+    #{$param}: #{$var_value};
+  }
+  
+}
+
+@include spaces-responsive('margin', 'false');
+@include spaces-responsive('padding', 'false');
+
+@include spaces-responsive('margin', 'true');
+@include spaces-responsive('padding', 'true');
