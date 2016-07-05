@@ -29,7 +29,6 @@ gulp.task('js', function(){
       .src('src/js/**/*.js')
       .pipe(jshint())
       .pipe(jshint.reporter('default'))
-      .pipe(concat('app.js'))
       .pipe(gulp.dest('public/assets/js'))
       .pipe(livereload());
   }else{
