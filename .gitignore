@@ -9,7 +9,7 @@ npm-debug.log
 /public/assets/bower_components
 /public/assets/js
 /public/assets/css
-/public/assets/tpl
+/public/tpl
 /public/*.html
 
 
