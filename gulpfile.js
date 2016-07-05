@@ -14,7 +14,6 @@ if(env === 'dev'){
 
 var gulp = require('gulp'),
   clean = require('gulp-clean'),
-  concat = require('gulp-concat'),
   gulpIf = require('gulp-if'),
   jade = require('gulp-jade'),
   sass = require('gulp-sass'),
@@ -34,7 +33,6 @@ gulp.task('js', function(){
   }else{
     gulp
       .src('src/js/**/*.js')
-      .pipe(concat('app.js'))
       .pipe(uglyfile())
       .pipe(gulp.dest('public/assets/js'));
   }
