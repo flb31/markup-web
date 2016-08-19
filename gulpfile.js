@@ -10,7 +10,7 @@ if(env === 'dev'){
   connect = require('gulp-connect'),
   jshint = require('gulp-jshint'); 
 }else{
-  var connect = function(){return true;};
+  var connect = { reload: function(){ return true; } };
 }
 
 
