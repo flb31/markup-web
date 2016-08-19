@@ -2,13 +2,15 @@
 var argv = require('yargs').argv;
 var env = (argv.env === 'dev') ? 'dev' : 'prod';
 var isDev = (env == 'dev');
+var port = argv.port || 8080;
+var live_port = argv.live_port || 35729;
 
 if(env === 'dev'){
   var express = require('gulp-express'),
-  livereload = require('gulp-livereload'),
+  connect = require('gulp-connect'),
   jshint = require('gulp-jshint'); 
 }else{
-  var livereload = function(){return true;};
+  var connect = function(){return true;};
 }
 
 
@@ -29,7 +31,7 @@ gulp.task('js', function(){
       .pipe(jshint())
       .pipe(jshint.reporter('default'))
       .pipe(gulp.dest('public/assets/js'))
-      .pipe(livereload());
+      .pipe(connect.reload());
   }else{
     gulp
       .src('src/js/**/*.js')
@@ -46,7 +48,7 @@ gulp.task('sass', function(){
     .pipe(sass(conf).on('error', sass.logError))
     .pipe(rename('main.css'))
     .pipe(gulp.dest('public/assets/css'))
-    .pipe( gulpIf(isDev, livereload()) );
+    .pipe( gulpIf(isDev, connect.reload()) );
 });
 
 gulp.task('jade', function(){
@@ -55,13 +57,12 @@ gulp.task('jade', function(){
     .src(['src/*.jade', 'src/**/*.jade'])
     .pipe(jade({ pretty: isDev }) )
     .pipe(gulp.dest('public'))
-    .pipe( gulpIf(isDev, livereload()) );
+    .pipe( gulpIf(isDev, connect.reload()) );
 });
 
 
 gulp.task('watch', function(){
-  livereload.listen();
-  express.run(['server.js']);
+  //express.run(['server.js']);
   gulp.watch('src/js/**/*.js', ['js']);
   gulp.watch('src/sass/**/*.scss', ['sass']);
   gulp.watch(['src/*.jade', 'src/**/*.jade'], ['jade']);
@@ -73,5 +74,15 @@ gulp.task('clean', function(){
     .pipe(clean());
 });
 
+gulp.task('connect', function() {
+  connect.server({
+    root: 'public',
+    port: port,
+    livereload: {
+      port: live_port
+    }
+  });
+});
+
 gulp.task('build', ['clean','jade', 'js', 'sass']);
-gulp.task('run', ['build', 'watch']);
+gulp.task('run', ['build', 'connect', 'watch']);

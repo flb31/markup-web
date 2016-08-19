@@ -10,9 +10,10 @@
   "author": "Fabian Luna",
   "license": "MIT",
   "devDependencies": {
+    "gulp-connect": "^5.0.0",
     "gulp-express": "^0.3.5",
     "gulp-jshint": "^2.0.1",
-    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^2.3.2",
     "jshint": "^2.9.2"
   },
   "dependencies": {
