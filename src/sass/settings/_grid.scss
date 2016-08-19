@@ -138,9 +138,9 @@ $use-markup-fix:        true!default;
  * Push and pull shall only be used if `$push` and/or `$pull` and `$responsive`
  * have been set to ‘true’.
  */
-$breakpoint-has-widths: ('phone','tablet', 'mid-tablet', 'lap', 'desk', 'desk-wide')!default;
-$breakpoint-has-push:   ('phone','tablet', 'mid-tablet', 'lap', 'desk', 'desk-wide')!default;
-$breakpoint-has-pull:   ('phone','tablet', 'mid-tablet', 'lap', 'desk', 'desk-wide')!default;
+$breakpoint-has-widths: ('phone','tablet', 'mid-tablet', 'lap', 'desk-wide')!default;
+$breakpoint-has-push:   ('phone','tablet', 'mid-tablet', 'lap', 'desk-wide')!default;
+$breakpoint-has-pull:   ('phone','tablet', 'mid-tablet', 'lap', 'desk-wide')!default;
 
 /**
  * You do not need to edit anything from this line onward; csswizardry-grids is
