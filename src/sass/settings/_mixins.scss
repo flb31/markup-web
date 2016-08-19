@@ -1,0 +1,39 @@
+@mixin my-placeholder($input, $color, $weight, $font-style, $font-size){
+  #{$input}::-webkit-input-placeholder {
+    color: $color;
+    font-weight: $weight;
+    font-style: $font-style;
+    font-family: $font--paragraph;
+    font-size: $font-size;
+  }
+
+  #{$input}:-moz-placeholder { /* Firefox 18- */
+    color: $color;
+    font-weight: $weight;
+    font-style: $font-style;
+    font-family: $font--paragraph;
+    font-size: $font-size;
+  }
+
+  #{$input}::-moz-placeholder {  /* Firefox 19+ */
+    color: $color;
+    font-weight: $weight;
+    font-style: $font-style;
+    font-family: $font--paragraph;
+    font-size: $font-size;
+  }
+
+  #{$input}:-ms-input-placeholder {
+    color: $color;
+    font-weight: $weight;
+    font-style: $font-style;
+    font-family: $font--paragraph;
+    font-size: $font-size;
+  }
+}
+
+@mixin font-sizes-px($min-size, $max-size){
+  @for $i from $min-size through $max-size{
+    .size--#{$i}{ font-size: #{$i}px !important; }
+  }
+}
