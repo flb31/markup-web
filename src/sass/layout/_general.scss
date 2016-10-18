@@ -5,9 +5,9 @@ body{
   height: 100vh;
   width: 100%;
   display: table;
-  animation: anim 15s ease infinite;
+  @include animation(anim 15s ease infinite);
     
-  @keyframes anim{
+  @include keyframes(anim){
     0% { background: $base--lumen--green; }
     50% { background: $base--lumen--yellow; }
     100% { background: $base--lumen--green; }
