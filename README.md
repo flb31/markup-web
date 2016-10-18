@@ -31,6 +31,10 @@
 > 
   `git clone https://github.com/flb31/flb31-frontend.git`  
   `cd flb31-frontend`
+  
+###Bourbon
+> 
+  `https://github.com/thoughtbot/bourbon`
 
 ###Getting Started
 > 

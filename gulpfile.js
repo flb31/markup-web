@@ -51,9 +51,8 @@ gulp.task('sass', function(){
 });
 
 gulp.task('jade', function(){
-  
   gulp
-    .src(['src/*.jade', 'src/**/*.jade'])
+    .src(['src/jade/**/*.jade'])
     .pipe(jade({ pretty: isDev }) )
     .pipe(gulp.dest('public'))
     .pipe( gulpIf(isDev, connect.reload()) );
@@ -64,7 +63,7 @@ gulp.task('watch', function(){
   //express.run(['server.js']);
   gulp.watch('src/js/**/*.js', ['js']);
   gulp.watch('src/sass/**/*.scss', ['sass']);
-  gulp.watch(['src/*.jade', 'src/**/*.jade'], ['jade']);
+  gulp.watch(['src/jade/**/*.jade'], ['template']);
 });
 
 gulp.task('clean', function(){
@@ -83,5 +82,6 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('build', ['clean','jade', 'js', 'sass']);
+gulp.task('build', ['template', 'js', 'sass']);
+gulp.task('template', ['clean','jade']);
 gulp.task('run', ['build', 'connect', 'watch']);
