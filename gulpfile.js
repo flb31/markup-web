@@ -44,9 +44,8 @@ gulp.task('js', function(){
 gulp.task('sass', function(){
   var conf = (!isDev)? {outputStyle: 'compressed'}: {};
   gulp
-    .src('src/sass/**/*.scss')
+    .src('src/sass/*.scss')
     .pipe(sass(conf).on('error', sass.logError))
-    .pipe(rename('main.css'))
     .pipe(gulp.dest('public/assets/css'))
     .pipe( gulpIf(isDev, connect.reload()) );
 });
