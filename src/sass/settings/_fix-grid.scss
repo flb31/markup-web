@@ -1,9 +1,9 @@
 .grid{
-  margin-left: $margin;
+  margin-left: 0;
   overflow: hidden;
 }
 
 .grid__item{
   float: left;
-  padding-left: $margin;
+  padding-left: $padding;
 }
