@@ -51,7 +51,8 @@
 .weight--thin{ font-weight: $weight--thin; }
 
 //Font size
-@include font-sizes-px(8, 100);
+@include font-sizes-px-responsive('false', 8, 100);
+@include font-sizes-px-responsive('true', 8, 100);
 
 //Background
 .background--transparent{ background-color: transparent; }

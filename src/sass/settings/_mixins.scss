@@ -32,8 +32,26 @@
   }
 }
 
-@mixin font-sizes-px($min-size, $max-size){
-  @for $i from $min-size through $max-size{
-    .size--#{$i}{ font-size: #{$i}px !important; }
+@mixin font-sizes-px-responsive($is_responsive, $min-size, $max-size){
+  
+  @if $is_responsive == 'true' {
+    
+    @each $breakpoint in $breakpoints {
+      $device_name: nth($breakpoint, 1);
+      $responsive: nth($breakpoint, 2);
+      $__prefix : '.' + $device_name + '--';
+      @media #{$responsive}{
+        @for $i from $min-size through $max-size{
+            #{$__prefix}size--#{$i}{ font-size: #{$i}px !important; }
+        }
+      }
+    }
+    
+  } @else {
+    
+    @for $i from $min-size through $max-size{
+      .size--#{$i}{ font-size: #{$i}px !important; }
+    }
+    
   }
 }
