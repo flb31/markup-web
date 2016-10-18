@@ -1,41 +1,107 @@
+/// -----------
+/// Breakpoints
+/// -----------
+/// Phone: phone
+/// Tablet: tablet
+/// Mini desktop or big tablet: mid
+/// Desktop: lap
+/// Big desktop: desk-wide
+
+/// -----------
+/// Spaces
+/// -----------
+/// margin: m
+/// padding: p
+  
+/// -----------
+/// Position
+/// -----------
+/// top: t
+/// bottom: b
+/// left: l
+/// right: r
+/// horizontal: h
+/// vertical: v
+
+/// -----------
+/// Size
+/// -----------
+/// quarter: quarter
+/// half: half
+/// double: double
+/// triple: triple
+/// quadruple: quad
+
+/// -----------
+/// Null Size
+/// -----------
+/// none: none
+
+/// -----------
+/// Order keynames
+/// -----------
+/// .breakpoint-space-size-position-null
+/// Note: Only space name is required. breakpoint, size, position and null names are optional.
+
+/// -----------
+/// Examples: (20px default size)
+/// -----------
+/// .p : padding: 20px;
+/// .p-half: padding: 10px;
+/// .p-triple: padding: 60px;
+/// .m-t : margin-top: 20px;
+/// .m-double-t : margin-top: 40px;
+/// .m-double-h : margin-left: 40px; margin-right: 40px;
+/// .p-b-none : padding-bottom: 0;
+/// .phone-m-quad-t: @media screen (#{$gt--small}) { margin-top: 80px; }
+
 $spaces: (
-  'margin' : '#{$margin}',
-  'half--margin' : '#{$half--margin}',
-  'double--margin' : '#{$double--margin}',
-  'quarter--margin' : '#{$quarter--margin}',
-  'none--margin' : '#{$none--margin}',
+  'm' : '#{$margin}',
+  'quarter-m' : '#{$quarter--margin}',
+  'half-m' : '#{$half--margin}',
+  'double-m' : '#{$double--margin}',
+  'triple-m' : '#{$triple--margin}',
+  'quad-m' : '#{$quad--margin}',
+  'none-m' : '#{$none--margin}',
   
-  'padding' : '#{$padding}',
-  'half--padding' : '#{$half--padding}',
-  'double--padding' : '#{$double--padding}',
-  'quarter--padding' : '#{$quarter--padding}',
-  'none--padding' : '#{$none--padding}',
-  
+  'p' : '#{$padding}',
+  'quarter-p' : '#{$quarter--padding}',
+  'half-p' : '#{$half--padding}',
+  'double-p' : '#{$double--padding}',
+  'triple-p' : '#{$triple--padding}',
+  'quad-p' : '#{$quad--padding}',
+  'none-p' : '#{$none--padding}'
 ) !default;
 
-$total-corners : 7;
-
-$corners: (
-  '' '',
-  'top' '--top',
-  'bottom' '--bottom',
-  'left' '--left',
-  'right' '--right',
-  'horizontal' '--horizontal',
-  'vertical' '--vertical',
+$spacesname: (
+  'm' : 'margin',
+  'p' : 'padding'
 ) !default;
 
+$total-positions : 7;
 
-$dimensions: (
+$positions: (
   '' '',
-  'half' '--half',
-  'double' '--double',
-  'quarter' '--quarter'
+  'top' '-t',
+  'bottom' '-b',
+  'left' '-l',
+  'right' '-r',
+  'horizontal' '-h',
+  'vertical' '-v'
 ) !default;
 
-$nones: (
+$sizes: (
   '' '',
-  'none' '--none'
+  'quarter' '-quarter',
+  'half' '-half',
+  'double' '-double',
+  'triple' '-triple',
+  'quad' '-quad'
+) !default;
+
+$null: (
+  '' '',
+  'none' '-none'
 ) !default;
 
 @mixin spaces-responsive($type, $is_responsive){
@@ -45,7 +111,7 @@ $nones: (
   @each $breakpoint in $breakpoints {
     $device_name: nth($breakpoint, 1);
     $responsive: nth($breakpoint, 2);
-    $__prefix : '.' + $device_name + '--';
+    $__prefix : '.' + $device_name + '-';
     
     
     @if $__flag_responsive == 'true' {
@@ -58,43 +124,43 @@ $nones: (
       
       /* ----Device #{$device_name} #{$type}----*/
     
-      @each $none in $nones{
+      @each $none in $null{
         $none_key: nth($none, 1);
         $none_value: nth($none, 2);
         $__counter : 0;
 
-        @each $dimension in $dimensions{
-          $dimension_key: nth($dimension, 1);
-          $dimension_value: nth($dimension, 2);
+        @each $size in $sizes{
+          $size_key: nth($size, 1);
+          $size_value: nth($size, 2);
 
-          @each $corner in $corners{
-            $corner_key: nth($corner, 1);
-            $corner_value: nth($corner, 2);
+          @each $position in $positions{
+            $position_key: nth($position, 1);
+            $position_value: nth($position, 2);
 
-            @if $__counter < $total-corners {
+            @if $__counter < $total-positions {
 
               $value : '';
               
               @if $none_key == 'none' {
-                $value : $none_key + '--' + $type;
-                $dimension_value : '';
+                $value : $none_key + '-' + $type;
+                $size_value : '';
                 $__counter: $__counter + 1; //Only for none property
               } @else {
 
-                @if( str-length($dimension_key) > 0 ) {
-                  $value : $dimension_key + '--' + $type;
+                @if( str-length($size_key) > 0 ) {
+                  $value : $size_key + '-' + $type;
                 } @else {
                   $value : $type;
                 } 
               }
 
-              #{$__prefix}#{$type}#{$dimension_value}#{$corner_value}#{$none_value}{
+              #{$__prefix}#{$type}#{$size_value}#{$position_value}#{$none_value}{
                 @if $is_responsive == 'true' {
                   @media #{$responsive}{
-                    @include print-value-spaces($type, $corner_key, $corner_value, $value);
+                    @include print-value-spaces($type, $position_key, $position_value, $value);
                   }
                 }@else{
-                  @include print-value-spaces($type, $corner_key, $corner_value, $value);
+                  @include print-value-spaces($type, $position_key, $position_value, $value);
                 }
               }
             } //end if
@@ -106,36 +172,37 @@ $nones: (
 }
 
 
-@mixin print-value-spaces($type, $corner_key, $corner_value, $value){
+@mixin print-value-spaces($type, $position_key, $position_value, $value){
   
   $var_value : map-get($spaces, #{$value}) !important;
-  
-  @if $corner_key == 'horizontal'{
-    $param-top : $type + '-left';
-    $param-bottom : $type + '-right';
+  $space_name : map-get($spacesname, #{$type});
+  @if $position_key == 'horizontal'{
+    $param-top : $space_name + '-left';
+    $param-bottom : $space_name + '-right';
     #{$param-top}: #{$var_value}; #{$param-bottom}: #{$var_value};
 
-  } @elseif $corner_key == 'vertical'{
-    $param-top : $type + '-top';
-    $param-bottom : $type + '-bottom';
+  } @elseif $position_key == 'vertical'{
+    $param-top : $space_name + '-top';
+    $param-bottom : $space_name + '-bottom';
 
-    #{$param-top}: #{$var_value}; #{$param-bottom}: #{$var_value};
+    #{$param-top}: #{$var_value};
+    #{$param-bottom}: #{$var_value};
 
   } @else{
 
-    $corner_str : '';
-    @if( str-length($corner_key) > 0 ){
-      $corner_str : str-slice($corner_value, 2);
+    $position_str : '';
+    @if( str-length($position_key) > 0 ){
+      $position_str : '-' + $position_key;
     }
-
-    $param : $type + $corner_str;
+    $param : $space_name + $position_str;
+    
     #{$param}: #{$var_value};
   }
   
 }
 
-@include spaces-responsive('margin', 'false');
-@include spaces-responsive('padding', 'false');
+@include spaces-responsive('m', 'false');
+@include spaces-responsive('p', 'false');
 
-@include spaces-responsive('margin', 'true');
-@include spaces-responsive('padding', 'true');
+@include spaces-responsive('m', 'true');
+@include spaces-responsive('p', 'true');
