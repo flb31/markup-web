@@ -18,7 +18,5 @@
   "devDependencies": {
     "components-font-awesome": "~4.5.0"
   },
-  "dependencies": {
-    "requirejs": "^2.2.0"
-  }
+  "dependencies": {}
 }
