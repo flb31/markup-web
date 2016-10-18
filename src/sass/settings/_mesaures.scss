@@ -8,7 +8,7 @@ $gt--extra--large: "only screen and (min-width: #{$desk--wide--start})";
 $breakpoints: (
     'phone' '(min-width: #{$phone--start})',
     'tablet' '(min-width: #{$palm--start})',
-    'mid-tablet' '(min-width: #{$mid--start})',
+    'mid' '(min-width: #{$mid--start})',
     'lap' '(min-width: #{$lap--start})',
     'desk-wide' '(min-width: #{$desk--wide--start})'
 ) !default;
