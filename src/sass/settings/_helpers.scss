@@ -56,6 +56,12 @@
 //Background
 .background--transparent{ background-color: transparent; }
 
+.bg {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 //Canvas responsive
 .container_16_9{
   position: relative;
