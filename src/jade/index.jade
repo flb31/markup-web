@@ -1,15 +1,35 @@
 - var rand = Math.floor(Math.random() * (1000 - 10000) + 10000)
 doctype html
-html(lang="es")
+html(
+  lang="es"
+)
   head
-    title Hello World by Lumen Digital
-    meta(charset="utf-8")
-    meta(content="" name="description")
-    meta(content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport")
-    link(rel="stylesheet", href="/assets/css/main.css?r=#{rand}")
+    title
+      | Hello World by Lumen Digital
+    meta(
+      charset="utf-8"
+    )
+    meta(
+      content=""
+      name="description"
+    )
+    meta(
+      content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width"
+      name="viewport"
+    )
+    link(
+      rel="stylesheet"
+      href="assets/css/main.css?r=#{rand}"
+    )
   body
     .hello
-      span Lumen Digital!
+      span.m-r
+        | Lumen Digital
       i.fa.fa-code
-    link(rel="stylesheet", href="/assets/css/vendor.css?r=#{rand}")
-    script(src="assets/js/web.js?r=#{rand}")
+    link(
+      rel="stylesheet"
+      href="assets/css/vendor.css?r=#{rand}"
+    )
+    script(
+      src="assets/js/web.js?r=#{rand}"
+    )

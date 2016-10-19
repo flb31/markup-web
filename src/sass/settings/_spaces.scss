@@ -78,7 +78,7 @@ $spacesname: (
   'p' : 'padding'
 ) !default;
 
-$total-positions : 7;
+$total-positions: 7;
 
 $positions: (
   '' '',
@@ -104,62 +104,62 @@ $null: (
   'none' '-none'
 ) !default;
 
-@mixin spaces-responsive($type, $is_responsive){
+@mixin spaces-responsive($type, $is_responsive) {
 	
-  $__flag_responsive : 'true';
+  $__flag_responsive: 'true';
   
   @each $breakpoint in $breakpoints {
     $device_name: nth($breakpoint, 1);
     $responsive: nth($breakpoint, 2);
-    $__prefix : '.' + $device_name + '-';
+    $__prefix: '.' + $device_name + '-';
     
     
     @if $__flag_responsive == 'true' {
       
       @if $is_responsive == 'false' {
-        $__prefix : '.';
-        $__flag_responsive : 'false'; //one iteration!!
+        $__prefix: '.';
+        $__flag_responsive: 'false'; //one iteration!!
         $device_name: 'all';
       }
       
       /* ----Device #{$device_name} #{$type}----*/
     
-      @each $none in $null{
+      @each $none in $null {
         $none_key: nth($none, 1);
         $none_value: nth($none, 2);
-        $__counter : 0;
+        $__counter: 0;
 
-        @each $size in $sizes{
+        @each $size in $sizes {
           $size_key: nth($size, 1);
           $size_value: nth($size, 2);
 
-          @each $position in $positions{
+          @each $position in $positions {
             $position_key: nth($position, 1);
             $position_value: nth($position, 2);
 
             @if $__counter < $total-positions {
 
-              $value : '';
+              $value: '';
               
               @if $none_key == 'none' {
-                $value : $none_key + '-' + $type;
-                $size_value : '';
+                $value: $none_key + '-' + $type;
+                $size_value: '';
                 $__counter: $__counter + 1; //Only for none property
               } @else {
 
                 @if( str-length($size_key) > 0 ) {
-                  $value : $size_key + '-' + $type;
+                  $value: $size_key + '-' + $type;
                 } @else {
-                  $value : $type;
+                  $value: $type;
                 } 
               }
 
-              #{$__prefix}#{$type}#{$size_value}#{$position_value}#{$none_value}{
+              #{$__prefix}#{$type}#{$size_value}#{$position_value}#{$none_value} {
                 @if $is_responsive == 'true' {
-                  @media #{$responsive}{
+                  @media #{$responsive} {
                     @include print-value-spaces($type, $position_key, $position_value, $value);
                   }
-                }@else{
+                } @else {
                   @include print-value-spaces($type, $position_key, $position_value, $value);
                 }
               }
@@ -171,8 +171,7 @@ $null: (
   }
 }
 
-
-@mixin print-value-spaces($type, $position_key, $position_value, $value){
+@mixin print-value-spaces($type, $position_key, $position_value, $value) {
   
   $var_value : map-get($spaces, #{$value}) !important;
   $space_name : map-get($spacesname, #{$type});
@@ -181,24 +180,23 @@ $null: (
     $param-bottom : $space_name + '-right';
     #{$param-top}: #{$var_value}; #{$param-bottom}: #{$var_value};
 
-  } @elseif $position_key == 'vertical'{
+  } @elseif $position_key == 'vertical' {
     $param-top : $space_name + '-top';
     $param-bottom : $space_name + '-bottom';
 
     #{$param-top}: #{$var_value};
     #{$param-bottom}: #{$var_value};
 
-  } @else{
+  } @else {
 
     $position_str : '';
-    @if( str-length($position_key) > 0 ){
+    @if( str-length($position_key) > 0 ) {
       $position_str : '-' + $position_key;
     }
     $param : $space_name + $position_str;
     
     #{$param}: #{$var_value};
   }
-  
 }
 
 @include spaces-responsive('m', 'false');

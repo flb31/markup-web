@@ -1,4 +1,6 @@
+//--------
 //Setting margin
+//--------
 $margin: 20px !default;
 $double--margin: $margin * 2 !default;
 $triple--margin: $margin * 3 !default;
@@ -7,7 +9,9 @@ $half--margin: $margin / 2 !default;
 $quarter--margin: $margin / 4 !default;
 $none--margin : 0;
 
+//--------
 //Setting padding
+//--------
 $padding: 20px !default;
 $double--padding: $padding * 2 !default;
 $triple--padding: $padding * 3 !default;
@@ -16,31 +20,39 @@ $half--padding: $padding / 2 !default;
 $quarter--padding: $padding / 4 !default;
 $none--padding : 0;
 
+//--------
 // Breakpoints
+//--------
 $phone--start:       320px!default;
 $palm--start:        500px!default;
 $mid--start:         768px!default;
 $lap--start:        1224px!default;
 $desk--wide--start:   1824px!default;
 
-
+//--------
 //Colors
+//--------
 $white : #FFF;
 $base--lumen--green: #4EA1AF;
 $base--lumen--yellow: #fcf533;
 
+//--------
 //Font weight
+//--------
 $weight--bold: 600;
 $weight--normal: 400;
 $weight--lighter: 300;
 $weight--thin: 100;
 
-
+//--------
 //Font family
-$font--title: '';
+//--------
+$font--title: 'Helvetica';
 $font--subtitle: '';
 $font--paragraph: '';
 
+//--------
 //Animation
+//--------
 $animation--time: 0.4s;
 $animation--timing: ease-out;

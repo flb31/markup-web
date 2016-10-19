@@ -1,4 +1,4 @@
-@mixin my-placeholder($input, $color, $weight, $font-style, $font-size){
+@mixin my-placeholder($input, $color, $weight, $font-style, $font-size) {
   #{$input}::-webkit-input-placeholder {
     color: $color;
     font-weight: $weight;
@@ -32,7 +32,7 @@
   }
 }
 
-@mixin font-sizes-px-responsive($is_responsive, $min-size, $max-size){
+@mixin font-sizes-px-responsive($is_responsive, $min-size, $max-size) {
   
   @if $is_responsive == 'true' {
     
@@ -40,8 +40,8 @@
       $device_name: nth($breakpoint, 1);
       $responsive: nth($breakpoint, 2);
       $__prefix : '.' + $device_name + '--';
-      @media #{$responsive}{
-        @for $i from $min-size through $max-size{
+      @media #{$responsive} {
+        @for $i from $min-size through $max-size {
             #{$__prefix}size--#{$i}{ font-size: #{$i}px !important; }
         }
       }
@@ -49,8 +49,8 @@
     
   } @else {
     
-    @for $i from $min-size through $max-size{
-      .size--#{$i}{ font-size: #{$i}px !important; }
+    @for $i from $min-size through $max-size {
+      .size--#{$i} { font-size: #{$i}px !important; }
     }
     
   }

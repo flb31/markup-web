@@ -18,8 +18,10 @@ $displays: (
 	'col' 'table-column'
 ) !default;
 
-/*Hidden and show responsive*/
-@mixin show-hidden-responsive(){
+//--------
+// Hidden and show responsive
+//--------
+@mixin show-hidden-responsive() {
 	
   @each $breakpoint in $breakpoints {
 			
