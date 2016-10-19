@@ -17,7 +17,7 @@ if(env === 'dev'){
 var gulp = require('gulp'),
   clean = require('gulp-clean'),
   gulpIf = require('gulp-if'),
-  jade = require('gulp-jade'),
+  pug = require('gulp-pug'),
   sass = require('gulp-sass'),
   rename = require('gulp-rename'),
   runSequence = require('run-sequence'),
@@ -51,10 +51,10 @@ gulp.task('sass', function(){
     .pipe( gulpIf(isDev, connect.reload()) );
 });
 
-gulp.task('jade', ['clean:jade'], function(){
+gulp.task('pug', ['clean:pug'], function(){
   return gulp
-    .src(['src/jade/**/*.jade'])
-    .pipe(jade({ pretty: isDev }) )
+    .src(['src/pug/**/*.pug'])
+    .pipe(pug({ pretty: isDev }) )
     .pipe(gulp.dest('public'))
     .pipe( gulpIf(isDev, connect.reload()) );
 });
@@ -64,7 +64,7 @@ gulp.task('watch', function(){
 
   gulp.watch('src/js/**/*.js', ['js']);
   gulp.watch('src/sass/**/*.scss', ['sass']);
-  gulp.watch(['src/jade/**/*.jade'], ['jade']);
+  gulp.watch(['src/pug/**/*.pug'], ['pug']);
   
   //vendors
   gulp.watch(['src/vendors/**/*'], ['vendors']);
@@ -84,7 +84,7 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('clean:jade', function(){
+gulp.task('clean:pug', function(){
   return gulp
     .src(['public/*.html','public/tpl'], {read: false})
     .pipe(clean());
@@ -126,7 +126,7 @@ gulp.task('bower', ['clean:bower'], function() {
     .pipe(gulp.dest('public'));
 });
 
-gulp.task('build', ['bower', 'vendors', 'assets:img', 'jade', 'js', 'sass']);
+gulp.task('build', ['bower', 'vendors', 'assets:img', 'pug', 'js', 'sass']);
 gulp.task('run', function(callback) {
   runSequence('build', 'connect', 'watch', callback);
 });
