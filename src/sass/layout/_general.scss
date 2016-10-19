@@ -7,6 +7,7 @@ body{
   @include justify-content(center);
   @include align-items(center);
   @include animation(anim 15s ease infinite);
+  @include flex-wrap(wrap);
   @include keyframes(anim) {
     0% { background: $base--lumen--green; }
     50% { background: $base--lumen--yellow; }
@@ -14,12 +15,11 @@ body{
   }
 
   .hello {
-    span, i.fa-code {
-      font-size: 120px;
-    }
+    @include align-self(center);
 
     i.fa-code {
       transition: transform 0.6s ease;
+
       &:hover {
         transform: rotateY(180deg);
       }
