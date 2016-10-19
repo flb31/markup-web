@@ -126,8 +126,7 @@ gulp.task('bower', ['clean:bower'], function() {
     .pipe(gulp.dest('public'));
 });
 
-gulp.task('build', function(callback) {
-  runSequence('bower', 'vendors', 'assets:img', 'jade', 'js', 'sass', 'connect', 'watch', callback);
+gulp.task('build', ['bower', 'vendors', 'assets:img', 'jade', 'js', 'sass']);
+gulp.task('run', function(callback) {
+  runSequence('build', 'connect', 'watch', callback);
 });
-
-gulp.task('run', ['build']);
