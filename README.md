@@ -21,7 +21,7 @@
 - .gitignore
 - .bowerrc
 - bower.json
-- gruntfile.js
+- gulpfile.js
 - package.json
 - Procfile
 - README.md
