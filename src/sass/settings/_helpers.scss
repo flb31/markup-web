@@ -73,8 +73,8 @@
 //--------
 //Font size
 //--------
-@include font-sizes-px-responsive('false', 8, 100);
-@include font-sizes-px-responsive('true', 8, 100);
+@include font-sizes-px-responsive('false', 8, 200);
+@include font-sizes-px-responsive('true', 8, 200);
 
 //--------
 //Background
