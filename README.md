@@ -12,9 +12,9 @@
   - assets/
     - img/
   - bower_components/
-  - jade/
+  - pug/
     - tpl/
-    - index.jade
+    - index.pug
   - js/
   - sass/
   - vendors/

@@ -1,5 +1,10 @@
+##0.3.0 (October, 19 2016)
+- Reorganized project.  
+- Changed Jade by Pug.  
+
 ##0.2 (July, 5 2016)
 - Removed Grunt, we use gulp now.  
+
 ##0.1.2 (April, 21 2016)
 Features:
 - Added environment: Use `--env=dev` for active the mode development environment.  
