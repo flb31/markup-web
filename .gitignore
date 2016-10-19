@@ -3,15 +3,9 @@
 npm-debug.log
 .DS_Store
 
-
 #dependences
 /node_modules
-/public/assets/bower_components
-/public/assets/js
-/public/assets/css
-/public/tpl
-/public/*.html
-
+src/bower_components/
 
 #build
-/dist
+/public

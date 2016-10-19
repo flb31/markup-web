@@ -20,20 +20,21 @@ var gulp = require('gulp'),
   jade = require('gulp-jade'),
   sass = require('gulp-sass'),
   rename = require('gulp-rename'),
+  runSequence = require('run-sequence'),
   uglyfile = require('gulp-uglify');
 
 
 gulp.task('js', function(){
   
   if(isDev){
-    gulp
+    return gulp
       .src('src/js/**/*.js')
       .pipe(jshint())
       .pipe(jshint.reporter('default'))
       .pipe(gulp.dest('public/assets/js'))
       .pipe(connect.reload());
   }else{
-    gulp
+    return gulp
       .src('src/js/**/*.js')
       .pipe(uglyfile())
       .pipe(gulp.dest('public/assets/js'));
@@ -43,15 +44,15 @@ gulp.task('js', function(){
 
 gulp.task('sass', function(){
   var conf = (!isDev)? {outputStyle: 'compressed'}: {};
-  gulp
+  return gulp
     .src('src/sass/*.scss')
     .pipe(sass(conf).on('error', sass.logError))
     .pipe(gulp.dest('public/assets/css'))
     .pipe( gulpIf(isDev, connect.reload()) );
 });
 
-gulp.task('jade', function(){
-  gulp
+gulp.task('jade', ['clean:jade'], function(){
+  return gulp
     .src(['src/jade/**/*.jade'])
     .pipe(jade({ pretty: isDev }) )
     .pipe(gulp.dest('public'))
@@ -60,16 +61,17 @@ gulp.task('jade', function(){
 
 
 gulp.task('watch', function(){
-  //express.run(['server.js']);
+
   gulp.watch('src/js/**/*.js', ['js']);
   gulp.watch('src/sass/**/*.scss', ['sass']);
-  gulp.watch(['src/jade/**/*.jade'], ['template']);
-});
-
-gulp.task('clean', function(){
-  gulp
-    .src(['public/*.html','public/tpl'], {read: false})
-    .pipe(clean());
+  gulp.watch(['src/jade/**/*.jade'], ['jade']);
+  
+  //vendors
+  gulp.watch(['src/vendors/**/*'], ['vendors']);
+  //img
+  gulp.watch(['src/assets/**/*'], ['assets:img']);
+  //bower
+  gulp.watch(['src/bower_components/**/*'], ['bower']);
 });
 
 gulp.task('connect', function() {
@@ -82,6 +84,50 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('build', ['template', 'js', 'sass']);
-gulp.task('template', ['clean','jade']);
-gulp.task('run', ['build', 'connect', 'watch']);
+gulp.task('clean:jade', function(){
+  return gulp
+    .src(['public/*.html','public/tpl'], {read: false})
+    .pipe(clean());
+});
+
+gulp.task('clean:bower', function(){
+  return gulp
+    .src(['public/bower_components'], {read: false})
+    .pipe(clean());
+});
+
+gulp.task('clean:vendors', function(){
+  return gulp
+    .src(['public/vendors'], {read: false})
+    .pipe(clean());
+});
+
+gulp.task('clean:img', function(){
+  return gulp
+    .src(['public/assets/img'], {read: false})
+    .pipe(clean());
+});
+
+gulp.task('vendors', ['clean:vendors'], function() {
+  return gulp
+    .src('src/vendors/**/*', { base: 'src' })
+    .pipe(gulp.dest('public'));
+});
+
+gulp.task('assets:img', ['clean:img'], function() {
+  return gulp
+    .src('src/assets/img/**/*', { base: 'src' })
+    .pipe(gulp.dest('public'));
+});
+
+gulp.task('bower', ['clean:bower'], function() {
+  return gulp
+    .src('src/bower_components/**/*', { base: 'src' })
+    .pipe(gulp.dest('public'));
+});
+
+gulp.task('build', function(callback) {
+  runSequence('bower', 'vendors', 'assets:img', 'jade', 'js', 'sass', 'connect', 'watch', callback);
+});
+
+gulp.task('run', ['build']);

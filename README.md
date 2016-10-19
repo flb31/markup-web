@@ -1,23 +1,23 @@
-#Flb31 FrontEnd
+#Lumen FrontEnd
 
 ###Prerequisites:
   - npm: http://nodejs.org/
   - Bower: http://bower.io/
   - Gulp: http://gulpjs.com/
+  - RubyGems: https://rubygems.org/
 
 
 ###Structure:
-- public
+- src/
   - assets/
     - img/
-    - vendors/ 
-    - bower_components/
-- src/
+  - bower_components/
+  - jade/
+    - tpl/
+    - index.jade
   - js/
   - sass/
-  - tpl/
-  - index.jade
-  
+  - vendors/
 - .gitignore
 - .bowerrc
 - bower.json
@@ -27,10 +27,10 @@
 - README.md
 - server.js
 
-###Clone flb31-frontend
+###Clone markup-web
 > 
-  `git clone https://github.com/flb31/flb31-frontend.git`  
-  `cd flb31-frontend`
+  `git clone https://lumendig@bitbucket.org/lumendig/markup-web.git`  
+  `cd markup-web`
   
 ###Bourbon
 > 
@@ -40,7 +40,7 @@
 > 
   `ENV=dev npm install`: Install packages.  
   `gulp run --env=dev`: Compile and Run Server.  
-  `gulp build --env=dev`: Export project to **dist/** without minify css and js.
+  `gulp build --env=dev`: Export project to **public/** without minify css and js.
 
 
 ###Production Enviroment
@@ -58,6 +58,6 @@ Install Heroku CLI: https://devcenter.heroku.com/articles/heroku-command
   `heroku open`  
 
 ###Contact
-Info: https://github.com/flb31/flb31-frontend  
-Email: flb031@gmail.com
+Info: https://bitbucket.org/lumendig/  
+Email: fabian@lumendigital.co
   
