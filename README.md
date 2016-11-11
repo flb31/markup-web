@@ -4,7 +4,6 @@
   - npm: http://nodejs.org/
   - Bower: http://bower.io/
   - Gulp: http://gulpjs.com/
-  - RubyGems: https://rubygems.org/
 
 
 ###Structure:
