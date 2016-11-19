@@ -1,6 +1,10 @@
 .grid {
   margin-left: 0;
   overflow: hidden;
+
+  &.negative {
+    margin-left: -$margin;
+  }
 }
 
 .grid__item {
