@@ -76,3 +76,41 @@
     border-radius: $border-radius;
   }
 }
+
+@mixin ratio($selector, $aspect-ratio) {
+  #{$selector} {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+
+    &:before {
+      content: '';
+      display: block;
+      $value: 0%;
+      @if $aspect-ratio == '1:1' {
+        $value: 100%;
+      } @elseif $aspect-ratio == '2:1' {
+        $value: 50%;
+      } @elseif $aspect-ratio == '1:2' {
+        $value: 200%;
+      } @elseif $aspect-ratio == '4:3' {
+        $value: 75%;
+      } @elseif $aspect-ratio == '16:9' {
+        $value: 56.25%;
+      } @else {
+        $value: 100%; /* 1:1 */
+      }
+
+      padding-top: $value;
+    }
+  }
+
+  >* {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
