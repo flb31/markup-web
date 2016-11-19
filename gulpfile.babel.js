@@ -1,32 +1,35 @@
+'use strict';
 
-var argv = require('yargs').argv;
-var env = (argv.env === 'dev') ? 'dev' : 'prod';
-var isDev = (env == 'dev');
-var port = argv.port || 8080;
-var live_port = argv.live_port || 35729;
+const argv = require('yargs').argv;
+const env = (argv.env === 'dev') ? 'dev' : 'prod';
+const isDev = (env == 'dev');
+const port = argv.port || 8080;
+const live_port = argv.live_port || 35729;
 
-if(env === 'dev'){
-  var express = require('gulp-express'),
-  connect = require('gulp-connect'),
-  jshint = require('gulp-jshint'); 
-}else{
-  var connect = { reload: function(){ return true; } };
+var express = undefined;
+var connect = undefined;
+var jshint = undefined;
+
+if (env === 'dev') {
+  express = require('gulp-express');
+  connect = require('gulp-connect');
+  jshint = require('gulp-jshint');
+} else {
+  connect = { reload: () => true };
 }
 
+const gulp = require('gulp');
+const clean = require('gulp-clean');
+const gulpIf = require('gulp-if');
+const imagemin = require('gulp-imagemin');
+const pug = require('gulp-pug');
+const sass = require('gulp-sass');
+const rename = require('gulp-rename');
+const runSequence = require('run-sequence');
+const uglyfile = require('gulp-uglify');
 
-var gulp = require('gulp'),
-  clean = require('gulp-clean'),
-  gulpIf = require('gulp-if'),
-  imagemin = require('gulp-imagemin'),
-  pug = require('gulp-pug'),
-  sass = require('gulp-sass'),
-  rename = require('gulp-rename'),
-  runSequence = require('run-sequence'),
-  uglyfile = require('gulp-uglify');
+gulp.task('js', () => {
 
-
-gulp.task('js', function(){
-  
   if(isDev){
     return gulp
       .src('src/js/**/*.js')
@@ -42,8 +45,7 @@ gulp.task('js', function(){
   }
 });
 
-
-gulp.task('sass', function(){
+gulp.task('sass', () => {
   var conf = (!isDev)? {outputStyle: 'compressed'}: {};
   return gulp
     .src('src/sass/*.scss')
@@ -52,7 +54,7 @@ gulp.task('sass', function(){
     .pipe( gulpIf(isDev, connect.reload()) );
 });
 
-gulp.task('pug', ['clean:pug'], function(){
+gulp.task('pug', ['clean:pug'], () => {
   return gulp
     .src(['src/pug/**/*.pug'])
     .pipe(pug({ pretty: isDev }) )
@@ -61,7 +63,7 @@ gulp.task('pug', ['clean:pug'], function(){
 });
 
 
-gulp.task('watch', function(){
+gulp.task('watch', () => {
 
   gulp.watch('src/js/**/*.js', ['js']);
   gulp.watch('src/sass/**/*.scss', ['sass']);
@@ -75,7 +77,7 @@ gulp.task('watch', function(){
   gulp.watch(['src/bower_components/**/*'], ['bower']);
 });
 
-gulp.task('connect', function() {
+gulp.task('connect', () => {
   connect.server({
     root: 'public',
     port: port,
@@ -85,44 +87,44 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('clean:pug', function(){
+gulp.task('clean:pug', () => {
   return gulp
     .src(['public/*.html','public/tpl'], {read: false})
     .pipe(clean());
 });
 
-gulp.task('clean:bower', function(){
+gulp.task('clean:bower', () => {
   return gulp
     .src(['public/bower_components'], {read: false})
     .pipe(clean());
 });
 
-gulp.task('clean:vendors', function(){
+gulp.task('clean:vendors', () => {
   return gulp
     .src(['public/vendors'], {read: false})
     .pipe(clean());
 });
 
-gulp.task('clean:img', function(){
+gulp.task('clean:img', () => {
   return gulp
     .src(['public/assets/img'], {read: false})
     .pipe(clean());
 });
 
-gulp.task('vendors', ['clean:vendors'], function() {
+gulp.task('vendors', ['clean:vendors'], () => {
   return gulp
     .src('src/vendors/**/*', { base: 'src' })
     .pipe(gulp.dest('public'));
 });
 
-gulp.task('assets:img', ['clean:img'], function() {
+gulp.task('assets:img', ['clean:img'], () => {
   return gulp
     .src('src/assets/img/**/*', { base: 'src' })
     .pipe( gulpIf(!isDev, imagemin()) )
     .pipe(gulp.dest('public'));
 });
 
-gulp.task('bower', ['clean:bower'], function() {
+gulp.task('bower', ['clean:bower'], () => {
   return gulp
     .src('src/bower_components/**/*', { base: 'src' })
     .pipe(gulp.dest('public'));
