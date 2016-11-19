@@ -1,3 +1,8 @@
+##0.3.1 (November, 18 2016)
+- Reorganized project.  
+- Added babel.  
+- Added gulp-imagemin.  
+
 ##0.3.0 (October, 19 2016)
 - Reorganized project.  
 - Changed Jade by Pug.  
