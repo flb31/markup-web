@@ -55,3 +55,24 @@
     
   }
 }
+
+@mixin scroll-style($selector, $width, $height,
+                    $bg-color-track, $opacity-track, $bg-color-thumb, $opacity-thumb,
+                    $border-width, $border-color, $border-style, $border-radius) {
+                      
+  #{$selector}::-webkit-scrollbar {
+    width: $width;
+    height: $height;
+  }
+    
+  #{$selector}::-webkit-scrollbar-track {
+    background-color: rgba( $bg-color-track , $opacity-track);
+    border-radius: $border-radius;
+  }
+    
+  #{$selector}::-webkit-scrollbar-thumb {
+    background-color: rgba( $bg-color-thumb, $opacity-thumb);
+    border: $border-width $border-color $border-style;
+    border-radius: $border-radius;
+  }
+}
