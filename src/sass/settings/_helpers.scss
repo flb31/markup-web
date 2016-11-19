@@ -29,6 +29,13 @@
 //--------
 .right { float: right; }
 .left { float: left; }
+.clear {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
 
 //--------
 //Position
