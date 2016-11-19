@@ -17,6 +17,7 @@ if(env === 'dev'){
 var gulp = require('gulp'),
   clean = require('gulp-clean'),
   gulpIf = require('gulp-if'),
+  imagemin = require('gulp-imagemin'),
   pug = require('gulp-pug'),
   sass = require('gulp-sass'),
   rename = require('gulp-rename'),
@@ -117,6 +118,7 @@ gulp.task('vendors', ['clean:vendors'], function() {
 gulp.task('assets:img', ['clean:img'], function() {
   return gulp
     .src('src/assets/img/**/*', { base: 'src' })
+    .pipe( gulpIf(!isDev, imagemin()) )
     .pipe(gulp.dest('public'));
 });
 
