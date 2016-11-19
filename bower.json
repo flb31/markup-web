@@ -15,10 +15,8 @@
     "test",
     "tests"
   ],
-  "devDependencies": {
-    "components-font-awesome": "~4.5.0"
-  },
   "dependencies": {
+    "components-font-awesome": "^4.5.0",
     "bourbon": "^4.2.7"
   }
 }
