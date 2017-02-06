@@ -1,3 +1,7 @@
+##0.4.0 (February, 6 2016)
+- Added gulp-tinypng.  
+- Added external config file (config.json).  
+
 ##0.3.1 (November, 18 2016)
 - Reorganized project.  
 - Added babel.  

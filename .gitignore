@@ -2,6 +2,7 @@
 /.sass-cache
 npm-debug.log
 .DS_Store
+.gulp/
 
 #dependences
 /node_modules
@@ -9,3 +10,6 @@ src/bower_components/
 
 #build
 /public
+
+#config
+config.json

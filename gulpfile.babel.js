@@ -1,5 +1,6 @@
 'use strict';
 
+const config = require('./config.json');
 const argv = require('yargs').argv;
 const env = (argv.env === 'dev') ? 'dev' : 'prod';
 const isDev = (env == 'dev');
@@ -21,11 +22,11 @@ if (env === 'dev') {
 const gulp = require('gulp');
 const clean = require('gulp-clean');
 const gulpIf = require('gulp-if');
-const imagemin = require('gulp-imagemin');
 const pug = require('gulp-pug');
 const sass = require('gulp-sass');
 const rename = require('gulp-rename');
 const runSequence = require('run-sequence');
+const tinypng = require('gulp-tinypng');
 const uglyfile = require('gulp-uglify');
 
 gulp.task('js', () => {
@@ -120,7 +121,13 @@ gulp.task('vendors', ['clean:vendors'], () => {
 gulp.task('assets:img', ['clean:img'], () => {
   return gulp
     .src('src/assets/img/**/*', { base: 'src' })
-    .pipe( gulpIf(!isDev, imagemin()) )
+    .pipe(gulp.dest('public'));
+});
+
+gulp.task('tinypng', ['clean:img'], function() {
+  return gulp
+    .src('src/assets/img/**/*', { base: 'src' })
+    .pipe( tinypng(config.API_KEY_TINY_PNG) )
     .pipe(gulp.dest('public'));
 });
 
