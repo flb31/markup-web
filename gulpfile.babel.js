@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('./config.json');
+var config = undefined;
 const argv = require('yargs').argv;
 const env = (argv.env === 'dev') ? 'dev' : 'prod';
 const isDev = (env == 'dev');
@@ -15,6 +15,7 @@ if (env === 'dev') {
   express = require('gulp-express');
   connect = require('gulp-connect');
   jshint = require('gulp-jshint');
+  config = require('./config.json');
 } else {
   connect = { reload: () => true };
 }
