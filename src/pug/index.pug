@@ -4,41 +4,10 @@ html(
   lang="es"
 )
   head
-    title
-      | Hello World by Lumen Digital
-    meta(
-      charset="utf-8"
-    )
-    meta(
-      content=""
-      name="description"
-    )
-    meta(
-      content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width"
-      name="viewport"
-    )
-    link(
-      rel="stylesheet"
-      href="assets/css/main.css?r=" + rand
-    )
-    include tpl/sign.html
+    include tpl/head.pug
   body
     .hello.phone-size-30.tablet-size-50.mid-size-80.lap-size-120
       span.m-r
         | Lumen Digital
       i.fa.fa-code
-    footer.copyright-lumen.p-half-v
-      a(
-        href="http://lumendigital.co"
-        target="_blank"
-      )
-        img(
-          src="assets/img/Poweredby.png"
-        )
-    link(
-      rel="stylesheet"
-      href="assets/css/vendor.css?r=" + rand
-    )
-    script(
-      src="assets/js/web.js?r=" + rand
-    )
+    include tpl/footer.pug
