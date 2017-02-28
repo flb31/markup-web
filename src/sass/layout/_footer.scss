@@ -1,6 +1,6 @@
 .copyright-lumen {
   background-color: $white;
-  @include align-self(flex-end);
+  align-self: flex-end;
   position: absolute;
   width: 100%;
 
