@@ -1,5 +1,5 @@
 title
-      | Hello World by Lumen Digital
+    = title
     meta(
       charset="utf-8"
     )
@@ -14,5 +14,13 @@ title
     link(
       rel="stylesheet"
       href="assets/css/main.css?r=" + rand
+    )
+    meta(
+      name="theme-color"
+      content="#{metaColor}"
+    )
+    meta(
+      name="apple-mobile-web-app-status-bar-style"
+      content="#{metaColor}"
     )
     include tpl/sign.html
