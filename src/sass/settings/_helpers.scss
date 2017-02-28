@@ -82,7 +82,7 @@
 //Background
 //--------
 .background-transparent { background-color: transparent; }
-.bg { background-position: center; background-size: cover; background-repeat: no-repeat; }
+.bg { background-position: center; background-size: cover; background-repeat: no-repeat; min-height: inherit; height: inherit; }
 
 //--------
 //Scroll horizontal display
