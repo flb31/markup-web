@@ -74,7 +74,7 @@ gulp.task('watch', () => {
   //vendors
   gulp.watch(['src/vendors/**/*'], ['vendors']);
   //img
-  gulp.watch(['src/assets/**/*'], ['assets:img']);
+  gulp.watch(['src/assets/img/**/*'], ['assets:img']);
   //bower
   gulp.watch(['src/bower_components/**/*'], ['bower']);
 });
