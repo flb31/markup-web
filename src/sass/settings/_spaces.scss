@@ -111,7 +111,7 @@ $null: (
   @each $breakpoint in $breakpoints {
     $device_name: nth($breakpoint, 1);
     $responsive: nth($breakpoint, 2);
-    $__prefix: '.' + $device_name + '-';
+    $__prefix: '.' + $device_name + '--';
     
     
     @if $__flag_responsive == 'true' {
